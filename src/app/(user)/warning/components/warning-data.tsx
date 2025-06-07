@@ -50,11 +50,11 @@ const columns: ColumnDef<WarningItem>[] = [
       const getTypeColor = () => {
         switch (type) {
           case "Áp suất":
-            return "bg-orange-100 text-orange-700 border-orange-200"
-          case "Mực nước":
             return "bg-blue-100 text-blue-700 border-blue-200"
+          case "Cháy":
+            return "bg-red-100 text-red-900 border-red-900"
           case "Nhiệt độ":
-            return "bg-red-100 text-red-700 border-red-200"
+            return "bg-yellow-100 text-red-700 border-yellow-200"
           default:
             return "bg-gray-100 text-gray-700 border-gray-200"
         }
@@ -81,10 +81,10 @@ const columns: ColumnDef<WarningItem>[] = [
 
       switch (type) {
         case "Áp suất":
-          unit = "kPa"
+          unit = "Bar"
           break
-        case "Mực nước":
-          unit = "m"
+        case "Cháy":
+          unit = "°C"
           break
         case "Nhiệt độ":
           unit = "°C"
@@ -275,8 +275,8 @@ export default function WarningData() {
           if (values.AS != null) {
             entries.push({ timestamp, date, type: "Áp suất", value: values.AS })
           }
-          if (values.MN != null) {
-            entries.push({ timestamp, date, type: "Mực nước", value: values.MN })
+          if (values.Chay != null) {
+            entries.push({ timestamp, date, type: "Cháy", value: values.Chay })
           }
           if (values.ND != null) {
             entries.push({ timestamp, date, type: "Nhiệt độ", value: values.ND })
@@ -308,7 +308,7 @@ export default function WarningData() {
         "Ngày cảnh báo": item.date,
         "Loại cảnh báo": item.type,
         "Giá trị": `${item.value} ${
-          item.type === "Áp suất" ? "kPa" : item.type === "Mực nước" ? "m" : item.type === "Nhiệt độ" ? "°C" : ""
+          item.type === "Áp suất" ? "Bar" : item.type === "Cháy" ? "°C" : item.type === "Nhiệt độ" ? "°C" : ""
         }`,
       }))
 

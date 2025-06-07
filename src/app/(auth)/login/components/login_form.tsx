@@ -28,7 +28,7 @@ export default function LoginForm() {
                         >
                             <h1 className="text-2xl font-[600]">Đăng nhập</h1>
                             <p className="my-4 text-base text-gray-600 leading-[1.8]">
-                                Khám phá trải nghiệm tuyệt vời cùng chúng tôi! Đăng nhập ngay để tận hưởng mọi tính năng độc đáo.
+                                Đăng nhập để giám sát hệ thống phòng cháy chữa cháy
                             </p>
                         </motion.div>
 

@@ -15,6 +15,9 @@ import {
     Wrench,
     Eye,
     ArrowRight,
+    Server,
+    Monitor,
+    Fan,
 } from "lucide-react"
 
 interface SpecificationItem {
@@ -28,10 +31,33 @@ interface SpecificationItem {
 const specifications: SpecificationItem[] = [
     {
         icon: Zap,
-        label: "Nguồn DC có định",
-        value: "± 15V",
+        label: "Nguồn AC/DC",
+        value: "220V/24V/5V",
+        color: "text-red-600",
+        bgColor: "bg-red-50",
+    },
+    
+    {
+        icon: Server,
+        label: "Bộ xử lý",
+        value: "Mitsubishi fx3u, ESP32",
         color: "text-yellow-600",
         bgColor: "bg-yellow-50",
+    },
+        {
+        icon: Monitor,
+        label: "HMI",
+        value: "Màn hình Delta B7S411",
+        color: "text-orange-600",
+        bgColor: "bg-orange-50",
+    },
+    
+    {
+        icon: Fan,
+        label: "Biến tần",
+        value: "1P220V-3P380V",
+        color: "text-purple-600",
+        bgColor: "bg-purple-50",
     },
     {
         icon: FlaskConical,
@@ -50,7 +76,7 @@ const specifications: SpecificationItem[] = [
     {
         icon: Activity,
         label: "Bơm tuần hoàn",
-        value: "10 L/phút",
+        value: "12V",
         color: "text-green-600",
         bgColor: "bg-green-50",
     },
@@ -61,59 +87,53 @@ const specifications: SpecificationItem[] = [
         color: "text-gray-600",
         bgColor: "bg-gray-50",
     },
-    {
-        icon: Gauge,
-        label: "Cảm biến áp suất",
-        value: "Strain gauge, đọc trực tiếp qua áp kế",
-        color: "text-purple-600",
-        bgColor: "bg-purple-50",
-    },
+
     {
         icon: Droplets,
         label: "Cảm biến mực nước",
-        value: "Đọc trực tiếp qua phao",
+        value: "Linear Variable Differential Transformer",
         color: "text-blue-600",
         bgColor: "bg-blue-50",
     },
     {
         icon: Activity,
-        label: "Cảm biến lưu lượng",
-        value: "IR Opflow 8000 xung/L, đọc trực tiếp qua phao",
+        label: "Cảm biến áp suất",
+        value: "Strain Gauge",
         color: "text-indigo-600",
         bgColor: "bg-indigo-50",
     },
-    {
-        icon: Wrench,
-        label: "Van điều khiển",
-        value: "Bằng tay, điều khiển bằng động cơ",
-        color: "text-orange-600",
-        bgColor: "bg-orange-50",
-    },
-    {
-        icon: Zap,
-        label: "Điều khiển van động cơ",
-        value: "Điều khiển bật/tắt ± 10V",
-        color: "text-yellow-600",
-        bgColor: "bg-yellow-50",
-    },
+    // {
+    //     icon: Wrench,
+    //     label: "Van điều khiển",
+    //     value: "Bằng tay, điều khiển bằng động cơ",
+    //     color: "text-orange-600",
+    //     bgColor: "bg-orange-50",
+    // },
+    // {
+    //     icon: Zap,
+    //     label: "Điều khiển van động cơ",
+    //     value: "Điều khiển bật/tắt ± 10V",
+    //     color: "text-yellow-600",
+    //     bgColor: "bg-yellow-50",
+    // },
     {
         icon: Settings,
-        label: "Điều khiển van điện từ",
-        value: "Điều khiển bật/tắt",
+        label: "Van",
+        value: "Van điện từ và van cơ",
         color: "text-red-600",
         bgColor: "bg-red-50",
     },
     {
         icon: Thermometer,
         label: "Cảm biến nhiệt",
-        value: "Pt100, đọc trực tiếp qua nhiệt kế",
+        value: "DS18B20",
         color: "text-red-600",
         bgColor: "bg-red-50",
     },
     {
         icon: Eye,
-        label: "Các đồng hồ đo",
-        value: "Hiển thị trực quan",
+        label: "Cảm biến khói",
+        value: "Đầu báo khói quang HORING Q01-4",
         color: "text-emerald-600",
         bgColor: "bg-emerald-50",
     },
@@ -184,13 +204,13 @@ const imageVariants = {
 
 export default function InformationComponent() {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
+        <div className="min-h-screen">
             {/* Header */}
             <motion.div
                 variants={headerVariants}
                 initial="hidden"
                 animate="visible"
-                className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-8 px-6 shadow-lg"
+                className="py-8 px-6"
             >
                 <div className="max-w-7xl mx-auto">
                     <div className="flex items-center justify-between">
@@ -201,15 +221,15 @@ export default function InformationComponent() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.2, duration: 0.6 }}
                             >
-                                Thông tin bộ thí nghiệm
+                                Thông tin hệ thống
                             </motion.h1>
                             <motion.p
-                                className="text-blue-100 text-lg"
+                                className="text-blue-600 text-lg"
                                 initial={{ opacity: 0, x: -30 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.4, duration: 0.6 }}
                             >
-                                Hệ thống điều khiển và giám sát tự động
+                                Hệ thống phòng cháy chữa cháy cho chung cư
                             </motion.p>
                         </div>
                         <motion.div
@@ -221,7 +241,7 @@ export default function InformationComponent() {
                             <Cpu className="w-8 h-8" />
                             <div className="text-right">
                                 <div className="text-xl font-bold">IT 5200</div>
-                                <div className="text-blue-200 text-sm">Infit Technologies</div>
+                                <div className="text-blue-600 text-sm">Infit Technologies</div>
                             </div>
                         </motion.div>
                     </div>
@@ -235,7 +255,7 @@ export default function InformationComponent() {
                         <motion.div variants={itemVariants} className="mb-6">
                             <h2 className="text-2xl font-bold text-gray-800 mb-2 flex items-center gap-3">
                                 <Settings className="w-6 h-6 text-blue-600" />
-                                Đặc tính thiết bị gồm có:
+                                Thiết bị bao gồm:
                             </h2>
                             <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full"></div>
                         </motion.div>
@@ -305,14 +325,14 @@ export default function InformationComponent() {
                             >
                                 <div className="text-center">
                                     <h4 className="font-bold text-gray-800 mb-1">Bộ thí nghiệm IT 5200</h4>
-                                    <p className="text-sm text-gray-600 mb-2">hãng Infit Technologies</p>
+                                    <p className="text-sm text-gray-600 mb-2">Hãng Infit Technologies</p>
                                 </div>
                             </motion.div>
                         </motion.div>
                     </motion.div>
                 </div>
 
-                {/* Footer Info */}
+                {/* Footer Info
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -356,7 +376,7 @@ export default function InformationComponent() {
                             </motion.div>
                         </div>
                     </div>
-                </motion.div>
+                </motion.div> */}
             </div>
         </div>
     )

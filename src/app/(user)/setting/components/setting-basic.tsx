@@ -5,11 +5,14 @@ import { motion } from "framer-motion";
 import { Fan, Thermometer, Droplets } from 'lucide-react';
 import { JSX } from "react/jsx-runtime";
 import { useDatabase } from "@/hooks/use-database";
+import { number } from "zod";
 
 export default function SettingBasic() {
   const [speed, setSpeed] = useState("");
   const [tempThreshold, setTempThreshold] = useState("");
   const [waterLevel, setWaterLevel] = useState("");
+  const [pressureMin, setpressureMin,] = useState("");
+  const [pressureMax, setpressureMax,] = useState("");
 
   const { data: dataC, loading: loadingC, error: errorC, updateRootData: updateRootDataC } = useDatabase<DataC>("/C");
 
@@ -17,6 +20,8 @@ export default function SettingBasic() {
     speed: "",
     tempThreshold: "",
     waterLevel: "",
+    pressureMin:"",
+    pressureMax:"",
   });
 
   const [isEditing, setIsEditing] = useState(false);
@@ -25,6 +30,8 @@ export default function SettingBasic() {
     speed: "",
     tempThreshold: "",
     waterLevel: "",
+    pressureMin:"",
+    pressureMax:"",
   });
 
   const validateNumber = (value: string) => {
@@ -52,6 +59,12 @@ export default function SettingBasic() {
         break;
       case "waterLevel":
         setWaterLevel(value);
+        break;
+      case "pressureMin":
+        setpressureMin(value);
+        break;
+        case "pressureMax":
+          setpressureMax(value);
         break;
     }
   };
@@ -82,10 +95,12 @@ export default function SettingBasic() {
 
     updateRootDataC({
       ...dataC,
-      INV: Number(speed),
+      INV: Number(speed)*80,
       ND: Number(tempThreshold),
-      SP: Number(waterLevel),
+      SP: Number(waterLevel)*40,
       CP: 1,
+      MIN: Number(pressureMin)*2000,
+      MAX: Number(pressureMax)*2000,
     }).then(() => {
       console.log("Settings updated successfully");
     }).catch((error) => {
@@ -94,6 +109,9 @@ export default function SettingBasic() {
         speed: "Lỗi khi cập nhật tốc độ quạt",
         tempThreshold: "Lỗi khi cập nhật ngưỡng nhiệt độ",
         waterLevel: "Lỗi khi cập nhật mức nước",
+        pressureMin: "Lỗi khi cập nhật ngưỡng áp suất thấp",
+        pressureMax:"Lỗi khi cập nhật ngưỡng áp suất cao"
+
       });
       setIsEditing(false);
       return;
@@ -103,6 +121,8 @@ export default function SettingBasic() {
       speed,
       tempThreshold,
       waterLevel,
+      pressureMin,
+      pressureMax,
     });
 
     setIsEditing(false);
@@ -112,7 +132,9 @@ export default function SettingBasic() {
     setSpeed(initialValues.speed);
     setTempThreshold(initialValues.tempThreshold);
     setWaterLevel(initialValues.waterLevel);
-    setErrors({ speed: "", tempThreshold: "", waterLevel: "" });
+    setpressureMin(initialValues.pressureMin);
+    setpressureMax(initialValues.pressureMax);
+    setErrors({ speed: "", tempThreshold: "", waterLevel: "",pressureMin:"", pressureMax:"" });
     setIsEditing(false);
   };
 
@@ -159,15 +181,26 @@ export default function SettingBasic() {
 
   useEffect(() => {
     const defaultValues = {
-      speed: dataC?.INV?.toFixed(2) || "0.00",
+      // speed: dataC?.INV?.toFixed(2) || "0.00",
+      // tempThreshold: dataC?.ND?.toFixed(2) || "0.00",
+      // waterLevel: dataC?.SP?.toFixed(2) || "0.00",
+      //pressureMin: dataC?.MIN?.toFixed(2) || "0.00",
+      //pressureMax: dataC?.MAX?.toFixed(2) || "0.00",
+      speed: ((dataC?.INV ?? 0) / 80).toFixed(2) || "0.00",
       tempThreshold: dataC?.ND?.toFixed(2) || "0.00",
-      waterLevel: dataC?.SP?.toFixed(2) || "0.00",
+      waterLevel: ((dataC?.SP ?? 0) / 40).toFixed(2) || "0.00",
+      pressureMin: ((dataC?.MIN ?? 0) / 2000).toFixed(2) || "0.00",
+      pressureMax: ((dataC?.MAX ?? 0) / 2000).toFixed(2) || "0.00",
+
     };
 
     setInitialValues(defaultValues);
     setSpeed(defaultValues.speed);
     setTempThreshold(defaultValues.tempThreshold);
     setWaterLevel(defaultValues.waterLevel);
+    setpressureMin(defaultValues.pressureMin);
+    setpressureMax(defaultValues.pressureMax);
+
   }, [dataC]);
 
   return (
@@ -221,6 +254,32 @@ export default function SettingBasic() {
           "bg-cyan-50",
           "text-cyan-600"
         )}
+        {renderInput(
+          "Ngưỡng cảnh báo áp suất thấp",
+           pressureMin,
+          <Droplets className="w-5 h-5 text-cyan-600" />,
+          "pressureMin",
+          "Nhập ngưỡng áp suất thấp",
+          "%",
+          "border-gray-200",
+          "focus:ring-cyan-50",
+          "bg-cyan-50",
+          "text-cyan-600"
+        )
+        }
+        {renderInput(
+          "Ngưỡng cảnh báo áp suất cao",
+           pressureMax,
+          <Droplets className="w-5 h-5 text-cyan-600" />,
+          "pressureMax",
+          "Nhập ngưỡng áp suất cao",
+          "%",
+          "border-gray-200",
+          "focus:ring-cyan-50",
+          "bg-cyan-50",
+          "text-cyan-600"
+        )
+        }
       </div>
 
       <motion.div

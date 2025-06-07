@@ -61,17 +61,7 @@ export default function Homepage() {
             </div>
           </motion.div>
 
-          <nav className="flex items-center gap-4">
-            <motion.button
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              className="flex items-center gap-2 text-white hover:text-red-200 transition-colors px-4 py-2 rounded-lg hover:bg-white/10"
-            >
-              <Users className="w-4 h-4" />
-              <span>Về chúng tôi</span>
-            </motion.button>
-          </nav>
+          
         </div>
       </motion.header>
 
@@ -92,13 +82,8 @@ export default function Homepage() {
               Giám sát hệ thống <span className="text-red-300">phòng cháy chữa cháy</span> trong tòa nhà, chung cư
             </motion.h1>
 
-            {/* Subtitle */}
-            <motion.p
-              variants={itemVariants}
-              className="text-xl md:text-2xl text-red-100 mb-8 max-w-2xl leading-relaxed"
-            >
-              Bảo vệ chung cư mini với hệ thống quản lý PLC.
-            </motion.p>
+           
+            
 
             {/* Action Buttons */}
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
@@ -112,53 +97,6 @@ export default function Homepage() {
                 <LogIn className="w-5 h-5" />
                 Đăng nhập
               </motion.button>
-
-              <motion.button
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
-                className="bg-white/20 hover:bg-white/30 text-white px-8 py-4 rounded-lg font-semibold text-lg backdrop-blur-sm border border-white/30 hover:border-white/50 transition-all duration-300 flex items-center gap-2"
-              >
-                <Users className="w-5 h-5" />
-                Về chúng tôi
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
-            </motion.div>
-
-            {/* Feature Highlights */}
-            <motion.div variants={itemVariants} className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl">
-              <motion.div
-                whileHover={{ scale: 1.02, y: -2 }}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <Shield className="w-6 h-6 text-red-300" />
-                  <h3 className="text-white font-semibold">An toàn 24/7</h3>
-                </div>
-                <p className="text-red-100 text-sm">Giám sát liên tục hệ thống PCCC</p>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02, y: -2 }}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <Settings className="w-6 h-6 text-red-300" />
-                  <h3 className="text-white font-semibold">Điều khiển PLC</h3>
-                </div>
-                <p className="text-red-100 text-sm">Tự động hóa thông minh</p>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02, y: -2 }}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <Phone className="w-6 h-6 text-red-300" />
-                  <h3 className="text-white font-semibold">Hỗ trợ khẩn cấp</h3>
-                </div>
-                <p className="text-red-100 text-sm">Phản ứng nhanh chóng</p>
-              </motion.div>
             </motion.div>
           </div>
         </div>

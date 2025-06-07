@@ -319,8 +319,8 @@ export default function SettingPID() {
                             {renderParameter(<RotateCcw className="w-5 h-5" />, "I", formData.I, "I", "", "Hệ số tích phân")}
                             {renderParameter(<Zap className="w-5 h-5" />, "D", formData.D, "D", "", "Hệ số vi phân")}
                             {renderParameter(<RefreshCcw className="w-5 h-5" />, "ST", formData.ST, "ST", "", "Chu kì lấy mãu")}
-                            {renderParameter(<TrendingUpIcon className="w-5 h-5" />, "MAX", formData.MAX, "MAX", "", "Giới hạn trên")}
-                            {renderParameter(<TrendingDownIcon className="w-5 h-5" />, "MIN", formData.MIN, "MIN", "", "Giới hạn dưới")}
+                            {/* {renderParameter(<TrendingUpIcon className="w-5 h-5" />, "MAX", formData.MAX, "MAX", "", "Giới hạn trên")}
+                            {renderParameter(<TrendingDownIcon className="w-5 h-5" />, "MIN", formData.MIN, "MIN", "", "Giới hạn dưới")} */}
                         </>,
                     )}
 
@@ -335,8 +335,8 @@ export default function SettingPID() {
                             {renderParameter(<RotateCcw className="w-5 h-5" />, "KI", formData.KI, "KI", "", "Hệ số tích phân")}
                             {renderParameter(<Zap className="w-5 h-5" />, "KD", formData.KD, "KD", "", "Hệ số vi phân")}
                             {renderParameter(<RefreshCcw className="w-5 h-5" />, "ST", formData.ST, "ST", "", "Chu kì lấy mãu")}
-                            {renderParameter(<TrendingUpIcon className="w-5 h-5" />, "MAX", formData.MAX, "MAX", "", "Giới hạn trên")}
-                            {renderParameter(<TrendingDownIcon className="w-5 h-5" />, "MIN", formData.MIN, "MIN", "", "Giới hạn dưới")}
+                            {/* {renderParameter(<TrendingUpIcon className="w-5 h-5" />, "MAX", formData.MAX, "MAX", "", "Giới hạn trên")}
+                            {renderParameter(<TrendingDownIcon className="w-5 h-5" />, "MIN", formData.MIN, "MIN", "", "Giới hạn dưới")} */}
                         </>,
                     )}
 

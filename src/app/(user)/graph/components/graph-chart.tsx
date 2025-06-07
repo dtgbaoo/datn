@@ -10,6 +10,7 @@ import {
     Play,
     RotateCcw
 } from "lucide-react"
+import { number } from "zod"
 
 interface DataPoint {
     time: string
@@ -22,8 +23,8 @@ interface DataPoint {
 interface GraphChartProps {
     title1?: string | null // Title for fixed line
     title2: string // Title for realtime line
-    value1: number // Fixed value
-    value2: number // Realtime value
+    value1?: number| null // Fixed value
+    value2?: number | null // Realtime value
     maxDataPoints?: number // Number of data points to show in viewport
     updateInterval?: number // Update interval in ms
     height?: number // Chart height
@@ -81,18 +82,20 @@ export default function GraphChart({
 
     // Add new data point
     const addDataPoint = useCallback(() => {
-        const now = Date.now()
-        const elapsedSeconds = Math.floor((now - startTimeRef.current) / 1000)
-
-        const newDataPoint: DataPoint = {
-            time: formatElapsedTime(elapsedSeconds),
-            elapsedSeconds,
-            value1,
-            value2,
-            timestamp: now,
+        if(value2&& value1) {
+            const now = Date.now()
+            const elapsedSeconds = Math.floor((now - startTimeRef.current) / 1000)
+    
+            const newDataPoint: DataPoint = {
+                time: formatElapsedTime(elapsedSeconds),
+                elapsedSeconds,
+                value1,
+                value2,
+                timestamp: now,
+            }
+    
+            setAllData((prevData) => [...prevData, newDataPoint])
         }
-
-        setAllData((prevData) => [...prevData, newDataPoint])
     }, [value1, value2])
 
     // Update viewport data based on current view settings
@@ -232,7 +235,7 @@ export default function GraphChart({
                         <div className="w-3 h-3 rounded-full bg-green-500" />
                         <span className="text-sm font-medium text-gray-700">{title1}</span>
                     </div>}
-                    <div className="text-2xl font-bold text-green-600">{value1.toFixed(2)}</div>
+                   { value1 &&<div className="text-2xl font-bold text-green-600">{value1.toFixed(2)}</div>}
                 </div>
 
                 <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
@@ -240,7 +243,7 @@ export default function GraphChart({
                         <div className="w-3 h-3 rounded-full bg-blue-500" />
                         <span className="text-sm font-medium text-gray-700">{title2}</span>
                     </div>
-                    <div className="text-2xl font-bold text-blue-600">{value2.toFixed(2)}</div>
+                {value2 &&    <div className="text-2xl font-bold text-blue-600">{value2?.toFixed(2)}</div>}
                 </div>
             </motion.div>
 
@@ -328,19 +331,19 @@ export default function GraphChart({
                             </div>
                             <div className="text-center">
                                 <div className="text-gray-600">Độ lệch hiện tại</div>
-                                <div className="font-semibold">{Math.abs(value2 - value1).toFixed(2)}</div>
+                              {value2 && value1 &&  <div className="font-semibold">{Math.abs(value2 - value1).toFixed(2)}</div>}
                             </div>
                             <div className="text-center">
                                 <div className="text-gray-600">Max {title2}</div>
-                                <div className="font-semibold">
+                                {value2 && <div className="font-semibold">
                                     {viewportData.length > 0 ? Math.max(...viewportData.map((d) => d.value2)).toFixed(2) : "N/A"}
-                                </div>
+                                </div>}
                             </div>
                             <div className="text-center">
                                 <div className="text-gray-600">Min {title2}</div>
-                                <div className="font-semibold">
+                                {value2 && <div className="font-semibold">
                                     {viewportData.length > 0 ? Math.min(...viewportData.map((d) => d.value2)).toFixed(2) : "N/A"}
-                                </div>
+                                </div>}
                             </div>
                         </div>
                     </motion.div>

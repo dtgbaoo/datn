@@ -21,8 +21,8 @@ const beVietnam = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "LamThuePLC",
-  description: "Ứng dụng quản lý thuê PLC",
+  title: "PCCC",
+  description: "webplcpccc",
 };
 
 export default function RootLayout({

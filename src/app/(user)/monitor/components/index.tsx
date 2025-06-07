@@ -21,7 +21,8 @@ export default function MonitorComponent() {
                             <MonitorBox
                                 icon={DropletsIcon}
                                 title="Đặt mức nước"
-                                value={dataC?.SP?.toFixed(2).toString() || "0.00"}
+                                value={((dataC?.SP ?? 0) / 4000 * 100).toFixed(2).toString() || "0.00"}
+                                //value={dataC?.SP?.toFixed(2).toString() || "0.00"}
                                 unit="%"
                                 status="success"
                                 trend="up"
@@ -29,7 +30,8 @@ export default function MonitorComponent() {
                             <MonitorBox
                                 icon={WeightIcon}
                                 title="Áp suất"
-                                value={dataM?.P?.toFixed(2).toString() || "0.00"}
+                                //value={dataM?.P?.toFixed(2).toString() || "0.00"}
+                                value={((dataM?.P ?? 0) / 2000).toFixed(2).toString()||"0.00"}
                                 unit="Bar"
                                 status="normal"
                                 trend="stable"
@@ -37,7 +39,8 @@ export default function MonitorComponent() {
                             <MonitorBox
                                 icon={ZapIcon}
                                 title="Điện áp"
-                                value={dataM?.O?.toFixed(2).toString() || "0.00"}
+                                //value={dataM?.O?.toFixed(2).toString() dataM?.O}
+                                value={((dataM?.O?? 0) / 4000 * 10).toFixed(2).toString()||"0.00"}
                                 unit="V"
                                 status="success"
                                 trend="stable"
@@ -45,42 +48,44 @@ export default function MonitorComponent() {
                             <MonitorBox
                                 icon={GlassWaterIcon}
                                 title="Mức nước"
-                                value={dataM?.W.toFixed(2).toString() || "0.00"}
+                                //value={dataM?.W.toFixed(2).toString() || "0.00"}
+                                value={((dataM?.W ?? 0) / 4000 * 100).toFixed(2).toString() || "0.00"}
                                 unit="%"
-                                status="warning"
-                                trend="down"
+                                status="normal"
+                                //trend="down"
                             />
                             <MonitorBox
                                 icon={ThermometerSunIcon}
                                 title="Nhiệt độ"
                                 value={dataM?.ND.toFixed(2).toString() || "0.00"}
                                 unit="°C"
-                                status="normal"
-                                trend="up"
+                                status="warning"
+                                //trend="up"
                             />
                             <MonitorBox
                                 icon={FanIcon}
                                 title="Tốc độ quạt hút"
-                                value={dataC?.INV.toFixed(2).toString() || "0.00"}
+                                //value={dataC?.INV.toFixed(2).toString() || "0.00"}
+                                value={((dataC?.INV ?? 0) / 80).toFixed(2).toString()|| "0.00"}
                                 unit="Hz"
                                 status="success"
-                                trend="stable"
+                               // trend="stable"
                             />
                             <MonitorBox
                                 icon={CircuitBoardIcon}
-                                title="Van điện từ"
-                                value={dataM?.B == "1" || dataM.B == "4" ? "Đang bật" : "Đã tắt"}
+                                title="Trạng thái tòa nhà"
+                                value={dataM?.B == "1" || dataM.B == "4" ? "Đang có cháy" : "Bình thường"}
                                 unit=""
-                                status={dataM?.B == "1" || dataM.B == "4" ? "success" : "normal"}
-                                trend="stable"
+                                status={dataM?.B == "1" || dataM.B == "4" ? "warning" : "success"}
+                                //trend="stable"
                             />
                             <MonitorBox
                                 icon={RadioIcon}
-                                title="Lõi biến tần"
-                                value={dataM?.B == "3" || dataM.B == "4" ? "Đang bật" : "Đã tắt"}
+                                title="Lỗi biến tần"
+                                value={dataM?.B == "3" || dataM.B == "4" ? "Có lỗi" : "Không có"}
                                 unit=""
-                                status={dataM?.B == "3" || dataM.B == "4" ? "success" : "normal"}
-                                trend="stable"
+                                status={dataM?.B == "3" || dataM.B == "4" ? "warning" : "success"}
+                                //trend="stable"
                             />
                         </>
                         :

@@ -4,6 +4,7 @@ import {
   FileSlidersIcon,
   MonitorIcon,
   TriangleAlertIcon,
+  Book,
 } from "lucide-react";
 
 export const sidebar_items = [
@@ -31,5 +32,10 @@ export const sidebar_items = [
     href: "/information",
     icon: FileSlidersIcon,
     label: "Thông tin hệ thống",
+  },
+  {
+    href: "/topic",
+    icon: Book,
+    label: "Thông tin đề tài",
   },
 ];
