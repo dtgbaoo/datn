@@ -34,5 +34,6 @@ declare type DataE = {
     AS?: number | null; // Áp suất
     MN?: number | null; // Mực nước
     ND?: number | null; // Nhiệt độ
+    Chay?: number | null; // Nhiệt độ
   };
 };
