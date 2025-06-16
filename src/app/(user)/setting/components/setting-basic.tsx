@@ -97,7 +97,7 @@ export default function SettingBasic() {
       ...dataC,
       INV: Number(speed)*80,
       ND: Number(tempThreshold),
-      SP: Number(waterLevel)*40,
+      SP: Number(waterLevel),
       CP: 1,
       MIN: Number(pressureMin)*2000,
       MAX: Number(pressureMax)*2000,
@@ -183,12 +183,12 @@ export default function SettingBasic() {
     const defaultValues = {
       // speed: dataC?.INV?.toFixed(2) || "0.00",
       // tempThreshold: dataC?.ND?.toFixed(2) || "0.00",
-      // waterLevel: dataC?.SP?.toFixed(2) || "0.00",
+      waterLevel: dataC?.SP?.toFixed(2) || "0.00",
       //pressureMin: dataC?.MIN?.toFixed(2) || "0.00",
       //pressureMax: dataC?.MAX?.toFixed(2) || "0.00",
       speed: ((dataC?.INV ?? 0) / 80).toFixed(2) || "0.00",
       tempThreshold: dataC?.ND?.toFixed(2) || "0.00",
-      waterLevel: ((dataC?.SP ?? 0) / 40).toFixed(2) || "0.00",
+      //waterLevel: ((dataC?.SP ?? 0) / 40).toFixed(2) || "0.00",
       pressureMin: ((dataC?.MIN ?? 0) / 2000).toFixed(2) || "0.00",
       pressureMax: ((dataC?.MAX ?? 0) / 2000).toFixed(2) || "0.00",
 

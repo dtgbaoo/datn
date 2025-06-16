@@ -315,9 +315,9 @@ export default function SettingPID() {
                         <Droplets className="w-6 h-6" />,
                         "bg-gradient-to-br from-blue-500 to-cyan-500",
                         <>
-                            {renderParameter(<TrendingUp className="w-5 h-5" />, "P", formData.P, "P", "", "Hệ số tỷ lệ")}
-                            {renderParameter(<RotateCcw className="w-5 h-5" />, "I", formData.I, "I", "", "Hệ số tích phân")}
-                            {renderParameter(<Zap className="w-5 h-5" />, "D", formData.D, "D", "", "Hệ số vi phân")}
+                            {renderParameter(<TrendingUp className="w-5 h-5" />, "KP", formData.P, "P", "", "Hệ số tỷ lệ")}
+                            {renderParameter(<RotateCcw className="w-5 h-5" />, "TI", formData.I, "I", "", "Thời gian tích phân")}
+                            {renderParameter(<Zap className="w-5 h-5" />, "TD", formData.D, "D", "", "Thời gian vi phân")}
                             {renderParameter(<RefreshCcw className="w-5 h-5" />, "ST", formData.ST, "ST", "", "Chu kì lấy mãu")}
                             {/* {renderParameter(<TrendingUpIcon className="w-5 h-5" />, "MAX", formData.MAX, "MAX", "", "Giới hạn trên")}
                             {renderParameter(<TrendingDownIcon className="w-5 h-5" />, "MIN", formData.MIN, "MIN", "", "Giới hạn dưới")} */}
@@ -332,8 +332,8 @@ export default function SettingPID() {
                         "bg-gradient-to-br from-orange-500 to-red-500",
                         <>
                             {renderParameter(<TrendingUp className="w-5 h-5" />, "KP", formData.KP, "KP", "", "Hệ số tỷ lệ")}
-                            {renderParameter(<RotateCcw className="w-5 h-5" />, "KI", formData.KI, "KI", "", "Hệ số tích phân")}
-                            {renderParameter(<Zap className="w-5 h-5" />, "KD", formData.KD, "KD", "", "Hệ số vi phân")}
+                            {renderParameter(<RotateCcw className="w-5 h-5" />, "TI", formData.KI, "KI", "", "Thời gian tích phân")}
+                            {renderParameter(<Zap className="w-5 h-5" />, "TD", formData.KD, "KD", "", "Thời gian vi phân")}
                             {renderParameter(<RefreshCcw className="w-5 h-5" />, "ST", formData.ST, "ST", "", "Chu kì lấy mãu")}
                             {/* {renderParameter(<TrendingUpIcon className="w-5 h-5" />, "MAX", formData.MAX, "MAX", "", "Giới hạn trên")}
                             {renderParameter(<TrendingDownIcon className="w-5 h-5" />, "MIN", formData.MIN, "MIN", "", "Giới hạn dưới")} */}

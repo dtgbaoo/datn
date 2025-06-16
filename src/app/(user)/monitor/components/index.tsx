@@ -21,8 +21,8 @@ export default function MonitorComponent() {
                             <MonitorBox
                                 icon={DropletsIcon}
                                 title="Đặt mức nước"
-                                value={((dataC?.SP ?? 0) / 4000 * 100).toFixed(2).toString() || "0.00"}
-                                //value={dataC?.SP?.toFixed(2).toString() || "0.00"}
+                                //value={((dataC?.SP ?? 0)).toFixed(2).toString() || "0.00"}
+                                value={dataC?.SP?.toFixed(2).toString() || "0.00"}
                                 unit="%"
                                 status="success"
                                 trend="up"
@@ -62,7 +62,7 @@ export default function MonitorComponent() {
                                 status="warning"
                                 //trend="up"
                             />
-                            <MonitorBox
+                            {/* <MonitorBox
                                 icon={FanIcon}
                                 title="Tốc độ quạt hút"
                                 //value={dataC?.INV.toFixed(2).toString() || "0.00"}
@@ -70,6 +70,17 @@ export default function MonitorComponent() {
                                 unit="Hz"
                                 status="success"
                                // trend="stable"
+                            /> */}
+                            <MonitorBox
+                                icon={FanIcon}
+                                title="Tốc độ quạt hút khói"
+                                value={
+                                    dataM?.B == "1"
+                                        ? ((dataC?.INV ?? 0) / 80).toFixed(2).toString()
+                                        : "Đang tắt"
+                                }
+                                unit={dataM?.B == "1" ? "Hz" : ""}
+                                status={dataM?.B == "1" ? "warning" : "success"}
                             />
                             <MonitorBox
                                 icon={CircuitBoardIcon}

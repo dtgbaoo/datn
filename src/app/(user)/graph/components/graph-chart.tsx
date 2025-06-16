@@ -69,7 +69,6 @@ export default function GraphChart({
     const [isLiveMode, setIsLiveMode] = useState(true) // Live mode vs historical mode
     const [viewportStart, setViewportStart] = useState(0) // Start index of viewport
     const [viewportEnd, setViewportEnd] = useState(maxDataPoints) // End index of viewport
-
     const startTimeRef = useRef<number>(Date.now())
     const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -82,7 +81,7 @@ export default function GraphChart({
 
     // Add new data point
     const addDataPoint = useCallback(() => {
-        if(value2&& value1) {
+        if (value1 !== null && value1 !== undefined && value2 !== null && value2 !== undefined) {
             const now = Date.now()
             const elapsedSeconds = Math.floor((now - startTimeRef.current) / 1000)
     
@@ -314,7 +313,7 @@ export default function GraphChart({
                 </div>
 
                 {/* Stats */}
-                {viewportData.length > 0 && (
+                {viewportData.length >= 0 && (
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}

@@ -22,8 +22,8 @@ export default function GraphComponent() {
           <MonitorBox
             icon={DropletsIcon}
             title="Mức nước tham chiếu"
-            //value={dataC?.SP?.toFixed(2).toString() || "0.00"}
-            value={(dataC?.SP !== undefined ? (dataC.SP / 40).toFixed(2) : "0.00")}
+            value={dataC?.SP?.toFixed(2).toString() || "0.00"}
+            //value={(dataC?.SP !== undefined ? (dataC.SP / 40).toFixed(2) : "0.00")}
 
             unit="%"
             status="success"
@@ -89,9 +89,9 @@ export default function GraphComponent() {
             {activeTab === "water" && <GraphChart
               title1="Giá trị đặt"
               title2="Mực nước hiện tại"
-              //value1={dataC?.SP ?? 0}
+              value1={dataC?.SP ?? 0}
               //value2={dataM?.W}
-              value1={((dataC?.SP ?? 0) / 40)}
+              //value1={((dataC?.SP ?? 0) / 40)}
               value2={((dataM?.W ?? 0) / 40)}
               maxDataPoints={10}
               height={400}
@@ -108,8 +108,8 @@ export default function GraphComponent() {
               title1= "Điện áp cao nhất"
               title2="Điện áp hiện tại"
               value1={10}
-              //value2={dataM?.ND ?? 0}
               value2={((dataM?.O ?? 0) / 400)}
+              //value2={((dataM?.O ?? 0) / 400)}
               maxDataPoints={30}
               height={400}
             />}
